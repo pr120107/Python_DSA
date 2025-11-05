@@ -1,6 +1,0 @@
-- [x] Print initial hexagon with 3 diagonals description
-- [x] Add ASCII art for initial configuration
-- [x] Describe moving 4 matchsticks (3 diagonals and 1 side)
-- [x] Add ASCII art for final configuration of three equilateral triangles
-- [x] Print final configuration of three equilateral triangles
-- [x] Update ASCII art to better represent hexagon and triangles
