@@ -1,3 +1,27 @@
+from itertools import product
+
+days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+genders = ['B', 'G']
+
+outcomes = list(product(genders, days, repeat=2))  # 196 total
+
+favorable_outcomes = []
+both_boys_outcomes = []
+
+for outcome in outcomes:
+    first_child_is_boy_tue = (outcome[0] == 'B' and outcome[1] == 'Tue')
+    second_child_is_boy_tue = (outcome[2] == 'B' and outcome[3] == 'Tue')
+
+    if first_child_is_boy_tue or second_child_is_boy_tue:
+        favorable_outcomes.append(outcome)
+
+        if outcome[0] == 'B' and outcome[2] == 'B':
+            both_boys_outcomes.append(outcome)
+
+probability = len(both_boys_outcomes) / len(favorable_outcomes)
+print(f"The probability that both children are boys given that at least one is a boy born on a Tuesday is: {probability:.4f}")
+
+
 """
 Puzzle | Tuesday Boy Paradox
 
@@ -22,15 +46,20 @@ def calculate_probability():
         outcome for outcome in outcomes
         if (outcome[0] == 'B' and outcome[1] == 'Tue') or (outcome[2] == 'B' and outcome[3] == 'Tue') 
     ]
+    print("Number of favorable outcomes:", len(favorable_outcomes), "Which are:", favorable_outcomes)
+    
     both_boys_outcomes = [
         outcome for outcome in favorable_outcomes
         if outcome[0] == 'B' and outcome[2] == 'B'
     ]
+    print("Number of final favorable outcomes:", len(both_boys_outcomes), "Which are:", both_boys_outcomes)
     probability = len(both_boys_outcomes) / len(favorable_outcomes)
     return probability
 if __name__ == "__main__":
     prob = calculate_probability()
     print(f"The probability that both children are boys given that at least one is a boy born on a Tuesday is: {prob:.4f}")
+
+
 # Explanation:
 # Total possible outcomes for two children = 2 (B/G) * 7 (days) * 2 (B/G) * 7 (days) = 196 because each child can be either a boy or a girl, 
 # and can be born on any of the 7 days of the week.
